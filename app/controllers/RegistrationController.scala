@@ -26,9 +26,10 @@ class RegistrationController(db: Database) extends Controller {
 
     import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-    db.userExists(login).map { exists =>
+    db.isUserExists(login).map { exists =>
       if(exists) Conflict(userAlreadyExists)
-      else Ok(Json.obj("success" -> "user created"))
+      else //todo: create user
+       Ok(Json.obj("success" -> "user created"))
     }
   }
 }

@@ -1,5 +1,5 @@
 import com.softwaremill.macwire._
-import controllers.{RegistrationController, MainController}
+import controllers.{MainController, RegistrationController}
 import services.akka.ActorsModule
 import services.database.DatabaseModule
 

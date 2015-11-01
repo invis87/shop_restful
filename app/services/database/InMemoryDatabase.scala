@@ -1,5 +1,7 @@
 package services.database
 
+import auth.Credentials
+
 import scala.collection.concurrent.TrieMap
 import scala.concurrent.Future
 
@@ -18,11 +20,20 @@ class InMemoryDatabase extends Database {
     map.keys.toList
   }
 
-  override def userExists(login: String): Future[Boolean] = {
-    if (login == "vacia") {
+  override def isUserExists(login: String): Future[Boolean] = {
+    if(login != "vacia"){
       Future.successful(true)
     } else {
       Future.successful(false)
     }
   }
+
+  override def getCredentials(login: String, pass: String): Future[Option[Credentials]] = {
+    if (login == "vacia") {
+      Future.successful(Some(Credentials(login)))
+    } else {
+      Future.successful(None)
+    }
+  }
+
 }
