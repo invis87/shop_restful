@@ -16,12 +16,13 @@ libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws,
-  specs2 % Test,
-  filters
-//  ,
-//  "net.kaliber" %% "play-basic-authentication-filter" % "0.7"
+  filters,
+  "com.softwaremill.macwire" %% "macros" % "1.0.1",
+  "org.mockito" % "mockito-core" % "1.10.19" % "test",
+  "com.typesafe.play" %% "play" % "2.3.8" withSources()
 )
 
+//todo: compile time DI?
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.
-routesGenerator := InjectedRoutesGenerator
+//routesGenerator := InjectedRoutesGenerator
