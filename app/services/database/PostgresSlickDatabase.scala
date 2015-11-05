@@ -25,9 +25,7 @@ class PostgresSlickDatabase(dataSource: BasicDataSource) extends MyDatabase {
     val id = 666//this number does't participate in sql query (don't know why slick generate id:Int, not a id:Option[Int]
     val query = Account += AccountRow(id, login, sha256(pass))
 
-    db.run(query)//does nothing...
-//    db.run(query.result) does't compile :(
-
+    db.run(query)//it is works!!! But if record already exists - no exception, nothing
 
     Future.successful(Some(UserRegistered(login)))
   }

@@ -4,7 +4,6 @@ import actors.DBPoolActor
 import akka.actor.ActorRef
 import akka.util.Timeout
 import auth.Credentials
-import business.Store
 import com.softwaremill.macwire._
 
 import scala.concurrent.Future

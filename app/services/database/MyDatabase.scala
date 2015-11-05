@@ -1,7 +1,6 @@
 package services.database
 
 import auth.Credentials
-import business.Store
 
 import scala.concurrent.Future
 
