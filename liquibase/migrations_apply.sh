@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+liquibase --url="jdbc:postgresql://127.0.01:5432/shop" --username=pronvis --password=laza --changeLogFile="migrations.xml" --classpath=/Users/pronvis/.m2/repository/org/postgresql/postgresql/9.4-1201-jdbc41/postgresql-9.4-1201-jdbc41.jar migrate

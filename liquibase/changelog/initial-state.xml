@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+    <changeSet author="pronvis (generated)" id="1446548319319-1">
+        <createTable tableName="Account">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="Account_pkey"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passhash" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446548319319-2">
+        <createTable tableName="OrderItems">
+            <column autoIncrement="true" name="orderId" type="SERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column autoIncrement="true" name="productId" type="SERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="1" name="coun" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446548319319-3">
+        <createTable tableName="Orders">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="Orders_pkey"/>
+            </column>
+            <column autoIncrement="true" name="customerId" type="SERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="approved" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446548319319-4">
+        <createTable tableName="Products">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="Products_pkey"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446548319319-5">
+        <createTable tableName="Store">
+            <column autoIncrement="true" name="productId" type="SERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="count" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446549935811-6">
+        <addUniqueConstraint columnNames="name" constraintName="Account_name_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="Account"/>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446548319319-6">
+        <addUniqueConstraint columnNames="name" constraintName="Products_name_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="Products"/>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446548319319-7">
+        <addForeignKeyConstraint baseColumnNames="orderId" baseTableName="OrderItems" constraintName="OrderItems_orderId_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Orders"/>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446548319319-8">
+        <addForeignKeyConstraint baseColumnNames="productId" baseTableName="OrderItems" constraintName="OrderItems_productId_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Products"/>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446548319319-9">
+        <addForeignKeyConstraint baseColumnNames="customerId" baseTableName="Orders" constraintName="Orders_customerId_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Account"/>
+    </changeSet>
+    <changeSet author="pronvis (generated)" id="1446548319319-10">
+        <addForeignKeyConstraint baseColumnNames="productId" baseTableName="Store" constraintName="Store_productId_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Products"/>
+    </changeSet>
+</databaseChangeLog>

@@ -2,12 +2,12 @@ package auth
 
 import play.api.mvc._
 import play.api.mvc.Results._
-import services.database.Database
+import services.database.MyDatabase
 
 import scala.concurrent.Future
 
 trait Secured {
-  def userDB : Database
+  def db : MyDatabase
 
   import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
@@ -34,7 +34,7 @@ trait Secured {
 
   def filterEncodedLoginPass(encodedLogPass: String): Future[Option[Credentials]] = {
     new String(org.apache.commons.codec.binary.Base64.decodeBase64(encodedLogPass.getBytes)).split(":").toList match {
-      case u :: p :: Nil => userDB.getCredentials(u, p)
+      case u :: p :: Nil => db.getCredentials(u, p)
       case _ => Future.successful(None)
     }
   }
